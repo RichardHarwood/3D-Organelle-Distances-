@@ -23,4 +23,45 @@ We take the 3D images/models and calculate a suite of distance metrics
 
 ![Screenshot](images/table%201.png)
 
+## Calculating the distance metrics
+The images are broken down into 5 different "parts" and loaded into Python as follows
+
+Start by loading packages
+```python 
+import numpy as np
+import os
+from scipy.ndimage.morphology import distance_transform_edt, binary_erosion
+import skfmm
+import imageio
+import skimage.io as io
+from skimage import img_as_ubyte, img_as_bool, img_as_float32
+from skimage.util import invert
+from skimage.measure import label, regionprops, marching_cubes_lewiner, mesh_surface_area
+import matplotlib.pyplot as plt
+from scipy import stats
+from scipy.ndimage import zoom
+import gc
+```
+We then define two functions - one to "erode" surfaces to create outlines and one to threshold specific gray scale values
+
+```python
+def Erosion3DimJ(input_img):
+    tmp = np.zeros(input_img.shape)
+    for i in range(input_img.shape[0]):
+        tmp[i, :, :] = binary_erosion(input_img[i, :, :])
+    return tmp
+
+def Threshold(input_img, Th_value):
+    tmp = np.zeros(input_img.shape, dtype=np.bool)
+    if isinstance(Th_value, int):
+        tmp[input_img == Th_value] = 1
+    else:
+        if isinstance(Th_value, float):
+            tmp[input_img > 0. & input_img < 1.] = 1
+        else:
+            for th_val in range(len(Th_value)):
+                tmp[input_img == Th_value[th_val]] = 1
+    return tmp
+```
+
  
