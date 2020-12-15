@@ -105,3 +105,26 @@ plt.imshow(mito[400])
 mito=img_as_bool(mito)
 ```
 ![Screenshot](images/MITEG.png)
+
+These are the images we need for this calculation 
+To make the simulation run we need a chl +mit image (these are the "obstructions" in the cell)
+
+```python 
+chl_mito = chl + mito
+```
+
+The technique used here gets a distance value for every voxel, but we are only intersted in teh mitochondria edge, so lets extract that:
+
+```python 
+mito_outline_smaller = Erosion3DimJ(invert(mito))
+mito_edge = invert(Threshold(invert(mito)-mito_outline_smaller, 0))
+mito_edge[0,:,:] = False
+mito_edge[-1,:,:] = False
+mito_edge[:,0,:] = False
+mito_edge[:,-1,:] = False
+mito_edge[:,:,0] = False
+mito_edge[:,:,-1] = False
+del mito_outline_smaller
+plt.imshow(mito_edge[400])
+```
+![Screenshot](images/MITEDGEZOOM.PNG)
