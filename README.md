@@ -63,5 +63,25 @@ def Threshold(input_img, Th_value):
                 tmp[input_img == Th_value[th_val]] = 1
     return tmp
 ```
-
+We then set file locations and names of tiffs (This is all automated later from a master scipt)
+```python 
+image_dir = 'Z:/ALLTIFS3DMIT/';sample="D2C1_"
+import runpy;import os;os.chdir('C:/Users/Richard/Desktop/Organelles/OrganelleScripts/')
+chl_name='D2C1CHL.tif';mit_name='D2C1MIT.tif';cell_w_org_name="D2C1VAC.tif"
+cell_name="D2C1CELL.tif";air_name="D2C1AIR.tif"
+```
+Now we set voxel dimensions 
+```python 
+voxel_dims = [0.05,0.04,0.04] 
+```
+Load in chloroplast images 
+```python 
+chl=io.imread(image_dir + chl_name)
+chl=zoom(chl, (1, 0.5, 0.5)) #This is the same as Image > adjust >size in FIJI
+chl[chl==0] = 0
+chl[chl==1] = 255
+chl=img_as_bool(chl)
+plt.imshow(chl[400])
+```
+![Screenshot](images/CHLEG.png)
  
