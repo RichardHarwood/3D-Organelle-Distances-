@@ -94,4 +94,14 @@ air[air==1] = 255
 air=img_as_bool(air)
 io.imshow(air[400])
 ```
- 
+![Screenshot](images/AIREG.png)
+
+```python
+mito = io.imread(image_dir + mit_name)
+mito=zoom(mito, (1, 0.5, 0.5))
+mito[mito==0] = 0
+mito[mito==1] = 255
+plt.imshow(mito[400])
+mito=img_as_bool(mito)
+```
+![Screenshot](images/MITEG.png)
