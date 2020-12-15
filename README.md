@@ -21,7 +21,7 @@ to the airspace and the surface area of chloroplast exposed to the airspace.
 
 We take the 3D images/models and calculate a suite of distance metrics
 
-![Screenshot](images/table%201.png)
+![Screenshot](images/table%201fix.png)
 
 ## Calculating the distance metrics
 The images are broken down into 5 different "parts" and loaded into Python as follows
