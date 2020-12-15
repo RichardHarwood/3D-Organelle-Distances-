@@ -128,3 +128,27 @@ del mito_outline_smaller
 plt.imshow(mito_edge[400])
 ```
 ![Screenshot](images/MITEDGEZOOM.PNG)
+
+We now create an array which will have the start point (the air) and the obstructions (chl +mit)
+
+```python 
+air_masked_array = np.ma.masked_array(invert(air), chl_mito)
+```
+We then get the distance for every voxel in the 3D image stack
+
+```python 
+D_geo_from_air = skfmm.distance(air_masked_array, dx=voxel_dims)
+```
+Then we extract the values at the mitochndria edge 
+
+```python 
+L_geo_edge_air_mit = np.asarray(D_geo_from_air[(mito_edge == True)])
+```
+Then we export these values as a .CSV
+
+```python 
+np.savetxt(sample+"L_geo_edge_air_mit.csv", L_geo_edge_air_mit, delimiter=",")
+```
+
+
+
