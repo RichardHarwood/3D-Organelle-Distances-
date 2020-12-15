@@ -84,4 +84,14 @@ chl=img_as_bool(chl)
 plt.imshow(chl[400])
 ```
 ![Screenshot](images/CHLEG.png)
+
+Load in air images 
+```python 
+air=io.imread(image_dir + air_name)
+air=zoom(air, (1, 0.5, 0.5)) #This is the same as Image > adjust >size in FIJI
+air[air==0] = 0
+air[air==1] = 255
+air=img_as_bool(air)
+io.imshow(air[400])
+```
  
