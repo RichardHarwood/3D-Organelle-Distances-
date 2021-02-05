@@ -149,6 +149,8 @@ Then we export these values as a .CSV
 ```python 
 np.savetxt(sample+"L_geo_edge_air_mit.csv", L_geo_edge_air_mit, delimiter=",")
 ```
+## Once we get the distances we can visualize the distances  
 
+![Screenshot](images/3dmitfigure2020.PNG)
 
 
