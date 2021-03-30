@@ -1,3 +1,10 @@
+The "Call Organelle Script" will call each distance script and run fro each smample (that is all 9 cells)- it gets 
+The distance from chl to mit
+The distance from cw mit
+The distance from air to mit
+The distance from chl to air
+
+
 # 3D Organelle Distances 
 ## Background 
 
